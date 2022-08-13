@@ -2,9 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const range_check = require("range_check");
 
-const ips = module.exports.cloudflareIPs = ["v4.txt", "v6.txt"].map((file) => path.join(__dirname, "data", file)).map(fs.readFileSync).join("\n").split("\n");
-const v4ips = module.exports.v4CloudflareIPs = ["v4.txt"].map((file) => path.join(__dirname, "data", file)).map(fs.readFileSync).join("\n").split("\n");
-const v6ips = module.exports.v6CloudflareIPs = ["v6.txt"].map((file) => path.join(__dirname, "data", file)).map(fs.readFileSync).join("\n").split("\n");
+const readFileSync = (file) => fs.readFileSync(file, "utf8");
+const ips = module.exports.cloudflareIPs = ["v4.txt", "v6.txt"].map((file) => path.join(__dirname, "data", file)).map(readFileSync).join("\n").split("\n");
+const v4ips = module.exports.v4CloudflareIPs = ["v4.txt"].map((file) => path.join(__dirname, "data", file)).map(readFileSync).join("\n").split("\n");
+const v6ips = module.exports.v6CloudflareIPs = ["v6.txt"].map((file) => path.join(__dirname, "data", file)).map(readFileSync).join("\n").split("\n");
 
 const isFromCloudflare = module.exports.isFromCloudflare = function(ip) {
 	if (range_check.isIP(ip)) {
