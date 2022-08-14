@@ -11,9 +11,9 @@ const isFromCloudflare = module.exports.isFromCloudflare = function(ip) {
 	if (range_check.isIP(ip)) {
 		const ipVersion = range_check.version(ip);
 		if (ipVersion === 4) {
-			return range_check.inRange(ip_address, v4ips);
+			return range_check.inRange(ip, v4ips);
 		} else if (ip_ver === 6) {
-			return range_check.inRange(ip_address, v6ips);
+			return range_check.inRange(ip, v6ips);
 		} else {
 			return false;
 		}
